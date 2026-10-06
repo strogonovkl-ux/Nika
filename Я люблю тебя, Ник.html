@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Я люблю тебя, Ник</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Onest:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFF0F3; --bg2:#FFD9E2; --ink:#4A1230; --muted:#7D3A58; --rose:#E8335F; --line:#F2B5C6;
+  --h1:#E8335F; --h2:#FF8FA8; --h3:#FFB86B;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#26102C;--bg2:#3E1640;--ink:#FFE9EF;--muted:#E9B5C8;--rose:#FF5C84;--line:#5B2A55;--h1:#FF4F7B;--h2:#FF9BB3;--h3:#FFC48A}
+}
+:root[data-theme="dark"]{--bg:#26102C;--bg2:#3E1640;--ink:#FFE9EF;--muted:#E9B5C8;--rose:#FF5C84;--line:#5B2A55;--h1:#FF4F7B;--h2:#FF9BB3;--h3:#FFC48A}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 18px/1.6 "Onest",system-ui,-apple-system,"Segoe UI",sans-serif;overflow-x:hidden}
+#hearts{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+main,footer{position:relative;z-index:1}
+.hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 20px;
+  background:radial-gradient(60% 50% at 50% 45%,var(--bg2),transparent 70%)}
+.beat{width:clamp(64px,12vw,96px);height:auto;margin-bottom:10px;filter:drop-shadow(0 8px 24px color-mix(in srgb,var(--rose) 55%,transparent));animation:beat 1.4s ease-in-out infinite;transform-origin:center}
+@keyframes beat{0%,100%{transform:scale(1)}14%{transform:scale(1.18)}28%{transform:scale(1)}42%{transform:scale(1.12)}70%{transform:scale(1)}}
+h1{margin:0;font:400 clamp(46px,11vw,132px)/1.02 "Marck Script","Segoe Script",cursive;color:var(--ink)}
+h1 .l1{display:block}
+h1 .nm{display:block;color:var(--rose);font-size:1.35em;text-shadow:0 0 40px color-mix(in srgb,var(--rose) 45%,transparent)}
+h1 .c{display:inline-block;opacity:0;transform:translateY(.4em) scale(.8);filter:blur(8px);animation:rise .9s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i)*70ms + 300ms)}
+h1 .sp{display:inline-block;width:.28em}
+@keyframes rise{to{opacity:1;transform:none;filter:none}}
+.sub{margin:22px 0 0;max-width:34ch;color:var(--muted);opacity:0;animation:rise .9s ease forwards;animation-delay:1.6s}
+.down{margin-top:34px;color:var(--muted);text-decoration:none;font-size:15px;opacity:0;animation:rise .9s ease forwards;animation-delay:2s}
+.down i{display:block;font-style:normal;color:var(--rose);font-size:22px;animation:bob 1.6s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(6px)}}
+.reasons{max-width:860px;margin:0 auto;padding:60px clamp(20px,5vw,40px) 40px}
+h2{font:400 clamp(38px,7vw,68px)/1.1 "Marck Script","Segoe Script",cursive;margin:0 0 36px;text-align:center}
+ol{list-style:none;margin:0;padding:0}
+.r{display:grid;grid-template-columns:clamp(64px,14vw,110px) 1fr;align-items:center;gap:8px 18px;padding:22px 0;border-top:1px solid var(--line);
+  opacity:0;transform:translateX(-28px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+.r:nth-child(even){transform:translateX(28px)}
+.r.in{opacity:1;transform:none}
+.r:last-child{border-bottom:1px solid var(--line)}
+.n{font:400 clamp(48px,10vw,84px)/1 "Marck Script",cursive;color:var(--rose);text-align:center;transition:transform .35s cubic-bezier(.3,1.6,.5,1)}
+.r:hover .n{transform:scale(1.18) rotate(-6deg)}
+.r p{margin:0;font-size:clamp(18px,2.6vw,23px);line-height:1.45}
+.finale{min-height:80vh;min-height:80svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 20px}
+.finale h2{margin-bottom:12px}
+.finale p{color:var(--muted);margin:0 0 30px;max-width:30ch}
+.btn{font:500 18px "Onest",sans-serif;color:#fff;background:var(--rose);border:0;border-radius:999px;padding:16px 34px;cursor:pointer;box-shadow:0 10px 30px color-mix(in srgb,var(--rose) 45%,transparent);transition:transform .2s}
+.btn:hover{transform:translateY(-3px) scale(1.03)}
+.btn:active{transform:scale(.97)}
+.btn:focus-visible,.down:focus-visible{outline:3px solid var(--ink);outline-offset:4px}
+footer{text-align:center;padding:10px 20px 44px;color:var(--muted);font-size:14px}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .beat,.down i{animation:none}
+  h1 .c,.sub,.down{animation:none;opacity:1;transform:none;filter:none}
+  .r{opacity:1;transform:none;transition:none}
+}
+</style>
+</head>
+<body>
+<canvas id="hearts" aria-hidden="true"></canvas>
+<main>
+  <section class="hero">
+    <svg class="beat" viewBox="-1 -1 2 1.7" aria-hidden="true"><path d="M0 .6 C-1.4 -.5 -.8 -1.4 0 -.7 C.8 -1.4 1.4 -.5 0 .6Z" fill="var(--rose)"/></svg>
+    <h1 id="title" aria-label="Я люблю тебя, Ник"></h1>
+    <p class="sub">Это маленький сайт только для тебя. Нажимай куда угодно — сердечек будет больше.</p>
+    <a class="down" href="#why">Почему я тебя люблю<i>♥</i></a>
+  </section>
+
+  <section class="reasons" id="why">
+    <h2>Причины, почему я люблю тебя</h2>
+    <ol id="list"></ol>
+  </section>
+
+  <section class="finale">
+    <h2>Люблю тебя. Сегодня, завтра и всегда.</h2>
+    <p>Причин гораздо больше, чем поместилось на этой странице.</p>
+    <button class="btn" id="more" type="button">Ещё сердечек</button>
+  </section>
+</main>
+<footer>Сделано с любовью, для Ника</footer>
+
+<script>
+(function(){
+  // Причины можно менять здесь
+  var reasons=[
+    "С тобой даже обычный вторник превращается в праздник.",
+    "Твоя улыбка — моё любимое место на свете.",
+    "Ты умеешь слушать так, что хочется рассказать всё.",
+    "Рядом с тобой мне спокойно и по-настоящему хорошо.",
+    "Ты смешишь меня в самые неожиданные моменты.",
+    "Ты поддерживаешь меня, когда всё непросто.",
+    "Мне нравится, как ты смотришь на меня.",
+    "Ты настоящий — без масок и притворства.",
+    "С тобой хочется становиться лучше.",
+    "Просто потому, что это ты."
+  ];
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Заголовок по буквам
+  var t=document.getElementById('title'),k=0;
+  function words(txt,cls){
+    var s=document.createElement('span');s.className=cls;s.setAttribute('aria-hidden','true');
+    txt.split('').forEach(function(ch){
+      var c=document.createElement('span');
+      if(ch===' '){c.className='sp';}else{c.className='c';c.textContent=ch;c.style.setProperty('--i',k++);}
+      s.appendChild(c);
+    });
+    t.appendChild(s);
+  }
+  words('Я люблю тебя,','l1');
+  words('Ник','nm');
+
+  // Список причин
+  var list=document.getElementById('list');
+  list.innerHTML=reasons.map(function(r,i){return '<li class="r"><span class="n">'+(i+1)+'</span><p>'+r+'</p></li>';}).join('');
+  var items=list.querySelectorAll('.r');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.35});
+    items.forEach(function(el){io.observe(el);});
+  }else{items.forEach(function(el){el.classList.add('in');});}
+
+  // Сердечки на canvas
+  var cv=document.getElementById('hearts'),ctx=cv.getContext('2d');
+  var W=0,H=0,dpr=1,cols=['#E8335F','#FF8FA8','#FFB86B'];
+  var HP=new Path2D();HP.moveTo(0,.3);HP.bezierCurveTo(-.9,-.3,-.5,-.9,0,-.4);HP.bezierCurveTo(.5,-.9,.9,-.3,0,.3);
+  function readColors(){
+    var cs=getComputedStyle(document.documentElement);
+    cols=['--h1','--h2','--h3'].map(function(v){return cs.getPropertyValue(v).trim()||'#E8335F';});
+  }
+  readColors();
+  try{window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',readColors);}catch(e){}
+  new MutationObserver(readColors).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+  function size(){
+    dpr=Math.min(window.devicePixelRatio||1,2);W=window.innerWidth;H=window.innerHeight;
+    cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  window.addEventListener('resize',size);size();
+
+  var floaters=[],bursts=[];
+  var count=Math.round(Math.min(60,Math.max(26,W/22)));
+  for(var i=0;i<count;i++){
+    var s=10+Math.random()*34;
+    floaters.push({x:Math.random()*W,y:Math.random()*H,s:s,v:14+Math.random()*34+(40-s)*.6,amp:10+Math.random()*30,f:.4+Math.random()*.8,
+      p:Math.random()*6.28,r:(Math.random()-.5)*.8,a:.18+Math.random()*.4,c:i%3});
+  }
+  function draw(x,y,s,rot,col,al){
+    ctx.save();ctx.translate(x,y);ctx.rotate(rot);ctx.scale(s,s);ctx.globalAlpha=al;ctx.fillStyle=col;ctx.fill(HP);ctx.restore();
+  }
+  function burst(x,y,n){
+    for(var i=0;i<n;i++){
+      var a=Math.random()*6.28,sp=80+Math.random()*260;
+      bursts.push({x:x,y:y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-120,s:10+Math.random()*22,r:Math.random()*6,vr:(Math.random()-.5)*5,life:0,max:1.3+Math.random()*1.1,c:(Math.random()*3)|0});
+    }
+  }
+  window.addEventListener('pointerdown',function(e){
+    if(e.target.id==='more')return;
+    burst(e.clientX,e.clientY,14);
+  });
+  document.getElementById('more').addEventListener('click',function(e){
+    var b=e.currentTarget.getBoundingClientRect();
+    burst(b.left+b.width/2,b.top+b.height/2,46);
+  });
+  var last=performance.now(),t0=last;
+  function frame(now){
+    var dt=Math.min(.05,(now-last)/1000);last=now;var T=(now-t0)/1000;
+    ctx.clearRect(0,0,W,H);
+    floaters.forEach(function(f){
+      if(!reduce){f.y-=f.v*dt;if(f.y<-f.s*2){f.y=H+f.s*2;f.x=Math.random()*W;}}
+      draw(f.x+(reduce?0:Math.sin(T*f.f+f.p)*f.amp),f.y,f.s,f.r+(reduce?0:Math.sin(T*f.f+f.p)*.25),cols[f.c],f.a);
+    });
+    for(var i=bursts.length-1;i>=0;i--){
+      var b=bursts[i];b.life+=dt;
+      if(b.life>b.max){bursts.splice(i,1);continue;}
+      b.vy+=260*dt;b.vx*=.985;b.x+=b.vx*dt;b.y+=b.vy*dt;b.r+=b.vr*dt;
+      var k=1-b.life/b.max;draw(b.x,b.y,b.s*(.6+.4*k),b.r,cols[b.c],Math.min(1,k*1.4)*.9);
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  // Приветственный залп сердечек
+  if(!reduce){setTimeout(function(){burst(W/2,H*.4,36);},900);}
+})();
+</script>
+</body>
+</html>
